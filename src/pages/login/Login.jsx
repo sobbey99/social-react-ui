@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import './login.scss'
 
 const Login = () => {
@@ -8,7 +10,8 @@ const Login = () => {
                 <h1>Hello World</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quaerat ullam distinctio reiciendis dicta aut voluptatum ratione, eos dolorem iure magni necessitatibus facilis, voluptas soluta!</p>
                 <span>Don't you have an account?</span>
-                <button>Register</button>
+                
+                <Link to='/register'><button>Register</button></Link>
             </div>
             <div className="right">
                 <h2>Login</h2>
