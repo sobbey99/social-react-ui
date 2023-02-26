@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+  $themes: (
+    light: (
+      textColor: #000,
+      bg: white,
+      logo: darkblue,
+      bgSoft: #f6f3f3,
+      textColorSoft: #555,
+      border: lightgray,
+    ),
+    dark: (
+      textColor: whitesmoke,
+      bg: #222,
+      logo: white,
+      bgSoft: #333,
+      textColorSoft: lightgray,
+      border: #444,
+    ),
+  );
+
+  @mixin themify($themes) {
+    @each $theme, $map in $themes {
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), "#{$key}");
+          $theme-map: map-merge(
+            $theme-map,
+            (
+              $key: $value,
+            )
+          ) !global;
+        }
+        @content;
+        $theme-map: null !global;
+      }
+    }
+  }
+
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }
+
+.post {
+    @include themify($themes){
+        -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+
+        border-radius: 20px;
+        background-color: themed("bg");
+        color: themed("textColor");
+    .container {
+        padding: 20px;
+
+
+        .user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .userInfo {
+                display: flex;
+                gap: 20px;
+
+                img{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                .details{
+                    display: flex;
+                    flex-direction: column;
+
+                    .name {
+                        font-weight: 500;
+                    }
+                    .date {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .content {
+            margin: 20px 0;
+
+            img {
+                width: 100%;
+                max-height: 500px;
+                object-fit: cover;
+                margin-top: 20px;
+            }
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+        }
+    }
+}
+}
