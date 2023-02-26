@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { AuthContext } from "../../context/authContext";
+
 
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
@@ -16,7 +18,7 @@ import './Navbar.scss'
 const Navbar = () => {
 
   const {toggle, darkMode} = useContext(DarkModeContext)
-
+  const {currentUser} = useContext(AuthContext);
 
   return (
     <div className='navbar'>
@@ -37,8 +39,8 @@ const Navbar = () => {
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <div className="user">
-            <img src='/login-bg-min.jpeg' alt="ProfileImage" />
-            <span>John Doe</span>
+            <img src={currentUser.profilePic} alt="ProfileImage" />
+            <span>{currentUser.name}</span>
         </div>
       </div>
     </div>
