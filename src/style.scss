@@ -47,3 +47,24 @@ body {
   @function themed($key) {
     @return map-get($theme-map, $key);
   }
+
+  @mixin mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media (max-width: 960px) {
+      @content;
+    }
+  }
+  @mixin notebook {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @mixin smartphone {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }

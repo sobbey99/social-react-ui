@@ -10,6 +10,17 @@
     overflow: scroll;
     background-color: themed("bgSoft");
 
+    @include mobile {
+        display: none;
+    }
+    @include tablet {
+        display: none;
+    }
+
+    @include notebook {
+        display: none;
+    }
+
     &::-webkit-scrollbar {
         display: none;
     }

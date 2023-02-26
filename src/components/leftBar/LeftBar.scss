@@ -12,6 +12,12 @@
     overflow: scroll;
     background-color: themed("bg");
     color:  themed("textColor");
+    @include mobile {
+        display: none;
+    }
+    @include smartphone {
+        display: none;
+    }
 
     &::-webkit-scrollbar {
         display: none;
